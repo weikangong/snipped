@@ -7,3 +7,5 @@ Setup instructions:
 3. expo start
 4. Download Expo from Android/iOS store
 5. Open Expo to scan QR on terminal/chrome debugger tab
+
+A project for NUS.
