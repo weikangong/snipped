@@ -10,6 +10,10 @@ import {
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
+const Header = {
+  fontSize: "20px"
+}
+
 export default class Card extends React.Component {
   constructor(props) {
     super(props);
@@ -18,30 +22,48 @@ export default class Card extends React.Component {
   render() {
     return (
       <View style={styles.card}>
-        <Image style={styles.thumbnail} source={{uri: this.props.image}} />
-        <Text style={styles.text}>This is card {this.props.name}</Text>
+        <Image style={styles.top} source={{uri: this.props.image}} />
+        <View style={styles.bottom}>
+          <View>
+            <Text style={styles.header}> {this.props.title} </Text>
+          </View>
+          <View>
+            <Text style={styles.subtitle}> this is subtitle </Text>
+          </View>
+        </View>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  header: {
+    fontFamily: 'Avenir',
+    fontSize: 30,
+    lineHeight: 50,
+  },
+  subtitle: {
+    fontFamily: 'Avenir',
+    fontSize: 15,
+    lineHeight: 25,
+    paddingLeft: 5,
+  },
   card: {
     alignItems: 'center',
-    borderRadius: 5,
+    borderRadius: 10,
     overflow: 'hidden',
-    borderColor: 'grey',
     backgroundColor: 'white',
-    borderWidth: 1,
+    borderWidth: 0,
     elevation: 1,
   },
-  thumbnail: {
+  top: {
     width: WINDOW_WIDTH-50,
-    height: WINDOW_HEIGHT/1.5,
+    height: WINDOW_HEIGHT/3.8,
   },
-  text: {
-    fontSize: 20,
-    paddingTop: 10,
-    paddingBottom: 10
+  bottom: {
+    alignItems: 'flex-start',
+    height: WINDOW_HEIGHT/2,
+    width: '100%',
+    padding: 20,
   }
 });

@@ -9,3 +9,10 @@ Setup instructions:
 5. Open Expo to scan QR on terminal/chrome debugger tab
 
 A project for NUS.
+
+# Requirements
+
+#####MVP Features:
+1. User must be able to swipe events
+2. User must be able to click into event details
+3. User must be able to sign up for event

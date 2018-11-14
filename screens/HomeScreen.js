@@ -13,22 +13,22 @@ import Card from '../components/Card';
 import NoMoreCards from '../components/NoMoreCards';
 
 const cards = [
-  {name: '1', image: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'},
-  {name: '2', image: 'https://media.giphy.com/media/irTuv1L1T34TC/giphy.gif'},
-  {name: '3', image: 'https://media.giphy.com/media/LkLL0HJerdXMI/giphy.gif'},
-  {name: '4', image: 'https://media.giphy.com/media/fFBmUMzFL5zRS/giphy.gif'},
-  {name: '5', image: 'https://media.giphy.com/media/oDLDbBgf0dkis/giphy.gif'},
-  {name: '6', image: 'https://media.giphy.com/media/7r4g8V2UkBUcw/giphy.gif'},
-  {name: '7', image: 'https://media.giphy.com/media/K6Q7ZCdLy8pCE/giphy.gif'},
-  {name: '8', image: 'https://media.giphy.com/media/hEwST9KM0UGti/giphy.gif'},
-  {name: '9', image: 'https://media.giphy.com/media/3oEduJbDtIuA2VrtS0/giphy.gif'},
+  {title: 'Women in Tech Asia', image: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'},
+  {title: 'Kent Ridge Hall Production', image: 'https://media.giphy.com/media/irTuv1L1T34TC/giphy.gif'},
+  {title: 'Faculty of Engineering Orientation Week', image: 'https://media.giphy.com/media/LkLL0HJerdXMI/giphy.gif'},
+  {title: 'SoC Pizza Party', image: 'https://media.giphy.com/media/fFBmUMzFL5zRS/giphy.gif'},
+  {title: 'Art and Design Week', image: 'https://media.giphy.com/media/oDLDbBgf0dkis/giphy.gif'},
+  {title: 'CAC+US!', image: 'https://media.giphy.com/media/7r4g8V2UkBUcw/giphy.gif'},
+  {title: 'Rag & Flag 2019', image: 'https://media.giphy.com/media/K6Q7ZCdLy8pCE/giphy.gif'},
+  {title: 'Residential College 4 Open Day', image: 'https://media.giphy.com/media/hEwST9KM0UGti/giphy.gif'},
+  {title: 'NUS Open Day', image: 'https://media.giphy.com/media/3oEduJbDtIuA2VrtS0/giphy.gif'},
 ]
 
 const cards2 = [
-  {name: '10', image: 'https://media.giphy.com/media/12b3E4U9aSndxC/giphy.gif'},
-  {name: '11', image: 'https://media4.giphy.com/media/6csVEPEmHWhWg/200.gif'},
-  {name: '12', image: 'https://media4.giphy.com/media/AA69fOAMCPa4o/200.gif'},
-  {name: '13', image: 'https://media.giphy.com/media/OVHFny0I7njuU/giphy.gif'},
+  {title: '10', image: 'https://media.giphy.com/media/12b3E4U9aSndxC/giphy.gif'},
+  {title: '11', image: 'https://media4.giphy.com/media/6csVEPEmHWhWg/200.gif'},
+  {title: '12', image: 'https://media4.giphy.com/media/AA69fOAMCPa4o/200.gif'},
+  {title: '13', image: 'https://media.giphy.com/media/OVHFny0I7njuU/giphy.gif'},
 ]
 
 export default class HomeScreen extends React.Component {
