@@ -4,8 +4,10 @@ import {
   Text,
   View,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from 'react-native';
+import Dialog, { SlideAnimation, DialogContent, DialogTitle, DialogButton } from 'react-native-popup-dialog';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
@@ -17,21 +19,46 @@ const Header = {
 export default class Card extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      toggleEventDetails: false
+    }
+  }
+
+  toggleEventDetails = () => {
+    this.setState({ toggleEventDetails: !this.state.toggleEventDetails });
   }
 
   render() {
     return (
-      <View style={styles.card}>
-        <Image style={styles.top} source={{uri: this.props.image}} />
-        <View style={styles.bottom}>
-          <View>
-            <Text style={styles.header}> {this.props.title} </Text>
-          </View>
-          <View>
-            <Text style={styles.subtitle}> this is subtitle </Text>
+      <TouchableOpacity onPress={this.toggleEventDetails}>
+        <View style={styles.card}>
+          <Image style={styles.top} source={{uri: this.props.image}} />
+          <View style={styles.bottom}>
+            <View>
+              <Text style={styles.header}> {this.props.title} </Text>
+            </View>
+            <View>
+              <Text style={styles.subtitle}> this is subtitle </Text>
+            </View>
           </View>
         </View>
-      </View>
+        <Dialog
+          visible={this.state.toggleEventDetails}
+          dialogAnimation={new SlideAnimation({
+            slideFrom: 'bottom',
+          })}
+          dialogTitle={<DialogTitle title={this.props.name} />}
+          actions={[
+            <DialogButton
+              text="Close"
+              onPress={this.toggleEventDetails}
+            />
+          ]}
+        >
+          <DialogContent>
+          </DialogContent>
+        </Dialog>
+      </TouchableOpacity>
     )
   }
 }
@@ -65,5 +92,10 @@ const styles = StyleSheet.create({
     height: WINDOW_HEIGHT/2,
     width: '100%',
     padding: 20,
-  }
+  },
+  container: {
+     flex: 1,
+     alignItems: 'center',
+     justifyContent: 'center',
+   },
 });
