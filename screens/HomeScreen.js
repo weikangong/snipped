@@ -180,26 +180,38 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1, backgroundColor: 'white' }}>
+      <View style={{ flex: 1, backgroundColor: 'white', paddingLeft: 20 }}>
         <SwipeCards
           cards={this.state.cards}
           loop={true}
           stack={true}
           renderCard={(cardData) => <Card {...cardData} />}
           renderNoMoreCards={() => <NoMoreCards />}
+
           showYup={true}
-          showNope={true}
-          showMaybe={true}
-          hasMaybeAction={true}
           handleYup={this.handleYup}
           yupText={'Interested'}
+          yupStyle={styles.yupStyle}
+          yupTextStyle={styles.yupTextStyle}
+
+          showNope={true}
           handleNope={this.handleNope}
           nopeText={'Nope'}
           nopeStyle={styles.nopeStyle}
-          handleMaybe={this.handleMaybe}
-          maybeText={'Sign up'}
+          nopeTextStyle={styles.nopeTextStyle}
+
+          // showMaybe={true}
+          // handleMaybe={this.handleMaybe}
+          // maybeText={'Sign up!'}
+          // hasMaybeAction={true}
+          // maybeStyle={styles.maybeStyle}
+          // maybeTextStyle={styles.maybeTextStyle}
+
+          dragY={false}
           cardRemoved={this.cardRemoved}
-          renderYup={this.handleYup}
+
+          stackOffsetX={10}
+          onClickHandler={() => {return null}}
         />
         </View>
     )
@@ -207,14 +219,63 @@ export default class HomeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  nopeTextStyle:{
+    fontFamily: 'Avenir',
+    fontSize: 30,
+    fontWeight: "700",
+    color: 'rgba(255, 0, 0, 0.7)',
+  },
+  yupTextStyle:{
+    fontFamily: 'Avenir',
+    fontSize: 30,
+    fontWeight: "700",
+    color: 'rgba(55, 188, 97, 1)',
+  },
+  // maybeTextStyle:{
+  //   fontFamily: 'Avenir',
+  //   fontSize: 30,
+  //   fontWeight: "700",
+  //   color: 'rgba(0, 153, 255, 1)',
+  // },
   nopeStyle: {
     borderColor: 'rgba(255, 0, 0, 0.7)',
-    borderWidth: 4,
+    borderWidth: 5,
     position: 'absolute',
-    left: 20,
-    bottom: WINDOW_HEIGHT/2,
-    padding: 20,
+    left: 15,
+    bottom: WINDOW_HEIGHT/1.4,
+    padding: 15,
     borderRadius: 10,
-    elevation: 99
-  }
+    elevation: 99,
+    width: 180,
+    alignItems: 'center',
+    backgroundColor: 'rgba(255, 0, 0, 0.2)',
+  },
+  yupStyle: {
+    fontFamily: 'Avenir',
+    borderColor: 'rgba(55, 188, 97, 1)',
+    borderWidth: 5,
+    position: 'absolute',
+    right: 15,
+    bottom: WINDOW_HEIGHT/1.4,
+    padding: 15,
+    borderRadius: 10,
+    elevation: 99,
+    width: 180,
+    alignItems: 'center',
+    backgroundColor: 'rgba(55, 188, 97, 0.3)',
+  },
+  // maybeStyle: {
+  //   fontFamily: 'Avenir',
+  //   borderColor: 'rgba(0, 153, 255, 1)',
+  //   borderWidth: 5,
+  //   position: 'absolute',
+  //   left: WINDOW_WIDTH/2,
+  //   bottom: WINDOW_HEIGHT/3,
+  //   padding: 15,
+  //   borderRadius: 10,
+  //   elevation: 99,
+  //   width: 180,
+  //   alignItems: 'center',
+  //   backgroundColor: 'rgba(0, 153, 255, 0.2)',
+  // }
 });

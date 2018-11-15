@@ -32,7 +32,7 @@ export default class Card extends React.Component {
   render() {
     return (
       <TouchableWithoutFeedback onPress={this.toggleEventDetails}>
-        <View>
+        <View style={styles.shadow}>
           <View style={styles.card}>
             <Image style={styles.top} source={{uri: this.props.image}} />
             <View style={styles.bottom}>
@@ -75,38 +75,70 @@ export default class Card extends React.Component {
 
             </View>
           </View>
-          <View style={{ flex: 1, height: WINDOW_HEIGHT, width: WINDOW_WIDTH }}>
-          <Dialog
-            visible={this.state.toggleEventDetails}
-            dialogAnimation={new SlideAnimation({
-              slideFrom: 'bottom',
-            })}
-            dialogTitle={<DialogTitle textStyle={styles.header} title={this.props.title} />}
-            actions={[
-              <DialogButton
-                text="Close"
-                onPress={this.toggleEventDetails}
-              />,
-              <DialogButton
-                text="Sign up"
-                onPress={this.toggleEventDetails}
-              />
-            ]}
-            width={WINDOW_WIDTH}
-            height={WINDOW_HEIGHT}
-            onTouchOutside={this.toggleEventDetails}
-            containerStyle={{ flex: 1 }}
-          >
+
+          <View style={styles.dialogContainer}>
+            <Dialog
+              visible={this.state.toggleEventDetails}
+              dialogAnimation={new SlideAnimation({
+                slideFrom: 'bottom',
+              })}
+              actions={[
+                <DialogButton
+                  text="Close"
+                  onPress={this.toggleEventDetails}
+                />,
+                <DialogButton
+                  text="Sign up"
+                  onPress={this.toggleEventDetails}
+                />
+              ]}
+              width={WINDOW_WIDTH}
+              height={WINDOW_HEIGHT}
+              onTouchOutside={this.toggleEventDetails}
+              containerStyle={{ flex: 1 }}
+            >
+              <DialogTitle textStyle={styles.plaintext} style={styles.dialogTitle} title={this.props.title} />
               <Image style={styles.dialogImg} source={{uri: this.props.image}} />
               <DialogContent>
-                <View>
-                  <Text style={styles.header}>Description</Text>
+                <View style={{paddingTop: 20}}>
+                  <Text style={styles.subheader}>{this.props.title}</Text>
                 </View>
                 <View>
-                  <Text style={styles.subtitle}>{this.props.description}</Text>
+                  <Text style={styles.greysubtext}>by NUS Entrepreneur's Association</Text>
+                </View>
+
+                //copied from above, should probably extract this out
+                <View style={styles.infoRow}>
+                  <View style={{width: 30, height: 30}}>
+                    <Ionicons name="md-person" size={24} color="grey" />
+                  </View>
+                  <View>
+                    <Text style={styles.subtext}>{this.props.going}</Text>
+                  </View>
+                </View>
+
+                <View style={styles.infoRow}>
+                  <View style={{width: 30, height: 30}}>
+                    <Ionicons name="md-calendar" size={24} color="grey" />
+                  </View>
+                  <View>
+                    <Text style={styles.subtext}>{this.props.date}</Text>
+                    <Text style={styles.greysubtext}>{this.props.time}</Text>
+                    <Text style={styles.link}>Add to Calendar</Text>
+                  </View>
+                </View>
+
+                <View style={styles.infoRow}>
+                  <View style={{width: 30, height: 30}}>
+                    <Ionicons name="md-pin" size={24} color="grey" />
+                  </View>
+                  <View>
+                    <Text style={styles.subtext}>{this.props.location}</Text>
+                    <Text style={styles.greysubtext}>{this.props.address}</Text>
+                  </View>
                 </View>
               </DialogContent>
-          </Dialog>
+            </Dialog>
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -115,30 +147,47 @@ export default class Card extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  infoBox: {
+  dialogTitle: {
+    backgroundColor: 'rgba(255, 204, 204, 0.4)',
+    paddingTop: 25,
+  },
+  dialogContainer: {
+    flex: 1,
+    height: WINDOW_HEIGHT,
+    width: WINDOW_WIDTH,
   },
   infoRow: {
     padding: 15,
     flex: 1,
     flexDirection: 'row',
+    maxWidth: WINDOW_WIDTH - 140,
   },
   header: {
     fontFamily: 'Avenir',
     fontSize: 30,
-    lineHeight: 50,
+    lineHeight: 40,
+  },
+  subheader: {
+    fontFamily: 'Avenir',
+    fontSize: 24,
+    fontWeight: '700',
+    lineHeight: 40,
+  },
+  plaintext:{
+    fontFamily: 'Avenir',
+    fontSize: 16,
+    lineHeight: 25,
   },
   subtext: {
     fontFamily: 'Avenir',
     fontSize: 16,
     lineHeight: 25,
-    paddingLeft: 5,
   },
   greysubtext: {
     fontFamily: 'Avenir',
     color: 'grey',
     fontSize: 16,
     lineHeight: 25,
-    paddingLeft: 5,
   },
   link: {
     fontFamily: 'Avenir',
@@ -151,7 +200,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Avenir',
     fontSize: 14,
     lineHeight: 25,
-    paddingLeft: 5,
   },
   card: {
     alignItems: 'center',
@@ -159,9 +207,14 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: 'white',
     borderWidth: 0,
-    elevation: 1,
     marginTop: WINDOW_HEIGHT/8,
     width: WINDOW_WIDTH-50,
+  },
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    elevation: 1, //for android
   },
   top: {
     width: WINDOW_WIDTH-50,
