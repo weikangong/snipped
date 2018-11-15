@@ -5,7 +5,7 @@ import {
   View,
   StyleSheet,
   Dimensions,
-  TouchableOpacity
+  TouchableWithoutFeedback
 } from 'react-native';
 import Dialog, { SlideAnimation, DialogContent, DialogTitle, DialogButton } from 'react-native-popup-dialog';
 import { Ionicons } from '@expo/vector-icons';
@@ -31,66 +31,85 @@ export default class Card extends React.Component {
 
   render() {
     return (
-      <TouchableOpacity onPress={this.toggleEventDetails}>
-        <View style={styles.card}>
-          <Image style={styles.top} source={{uri: this.props.image}} />
-          <View style={styles.bottom}>
-            <View>
-              <Text style={styles.header}> {this.props.title} </Text>
-            </View>
-            <View>
-              <Text style={styles.subtitle}> this is subtitle </Text>
-            </View>
-
-            <View style={styles.infoRow}>
-              <View style={{width: 30, height: 30}}>
-                <Ionicons name="md-person" size={24} color="grey" />
+      <TouchableWithoutFeedback onPress={this.toggleEventDetails}>
+        <View>
+          <View style={styles.card}>
+            <Image style={styles.top} source={{uri: this.props.image}} />
+            <View style={styles.bottom}>
+              <View>
+                <Text style={styles.header}>{this.props.title}</Text>
               </View>
               <View>
-                <Text style={styles.subtext}>Janet Wong, Christina Choo and 98 others are also going</Text>
+                <Text style={styles.subtitle}>{this.props.subtitle}</Text>
               </View>
-            </View>
 
-            <View style={styles.infoRow}>
-              <View style={{width: 30, height: 30}}>
-                <Ionicons name="md-calendar" size={24} color="grey" />
+              <View style={styles.infoRow}>
+                <View style={{width: 30, height: 30}}>
+                  <Ionicons name="md-person" size={24} color="grey" />
+                </View>
+                <View>
+                  <Text style={styles.subtext}>{this.props.going}</Text>
+                </View>
               </View>
-              <View>
-                <Text style={styles.subtext}>Sat, 19 Sep 2018</Text>
-                <Text style={styles.greysubtext}>10:00 AM - 5:00 AM GMT+8</Text>
-                <Text style={styles.link}>Add to Calendar</Text>
-              </View>
-            </View>
 
-            <View style={styles.infoRow}>
-              <View style={{width: 30, height: 30}}>
-                <Ionicons name="md-pin" size={24} color="grey" />
+              <View style={styles.infoRow}>
+                <View style={{width: 30, height: 30}}>
+                  <Ionicons name="md-calendar" size={24} color="grey" />
+                </View>
+                <View>
+                  <Text style={styles.subtext}>{this.props.date}</Text>
+                  <Text style={styles.greysubtext}>{this.props.time}</Text>
+                  <Text style={styles.link}>Add to Calendar</Text>
+                </View>
               </View>
-              <View>
-                <Text style={styles.subtext}>Engineering Auditorium 6</Text>
-                <Text style={styles.greysubtext}>2706 Martin Luther King Jr. Way, Berkeley CA 94703</Text>
-              </View>
-            </View>
 
+              <View style={styles.infoRow}>
+                <View style={{width: 30, height: 30}}>
+                  <Ionicons name="md-pin" size={24} color="grey" />
+                </View>
+                <View>
+                  <Text style={styles.subtext}>{this.props.location}</Text>
+                  <Text style={styles.greysubtext}>{this.props.address}</Text>
+                </View>
+              </View>
+
+            </View>
+          </View>
+          <View style={{ flex: 1, height: WINDOW_HEIGHT, width: WINDOW_WIDTH }}>
+          <Dialog
+            visible={this.state.toggleEventDetails}
+            dialogAnimation={new SlideAnimation({
+              slideFrom: 'bottom',
+            })}
+            dialogTitle={<DialogTitle textStyle={styles.header} title={this.props.title} />}
+            actions={[
+              <DialogButton
+                text="Close"
+                onPress={this.toggleEventDetails}
+              />,
+              <DialogButton
+                text="Sign up"
+                onPress={this.toggleEventDetails}
+              />
+            ]}
+            width={WINDOW_WIDTH}
+            height={WINDOW_HEIGHT}
+            onTouchOutside={this.toggleEventDetails}
+            containerStyle={{ flex: 1 }}
+          >
+              <Image style={styles.dialogImg} source={{uri: this.props.image}} />
+              <DialogContent>
+                <View>
+                  <Text style={styles.header}>Description</Text>
+                </View>
+                <View>
+                  <Text style={styles.subtitle}>{this.props.description}</Text>
+                </View>
+              </DialogContent>
+          </Dialog>
           </View>
         </View>
-        <Dialog
-          visible={this.state.toggleEventDetails}
-          dialogAnimation={new SlideAnimation({
-            slideFrom: 'bottom',
-          })}
-          dialogTitle={<DialogTitle title={this.props.name} />}
-          actions={[
-            <DialogButton
-              text="Close"
-              onPress={this.toggleEventDetails}
-            />
-          ]}
-        >
-          <DialogContent>
-          </DialogContent>
-        </Dialog>
-      </TouchableOpacity>
+      </TouchableWithoutFeedback>
     )
   }
 }
@@ -102,7 +121,6 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
   },
   header: {
     fontFamily: 'Avenir',
@@ -142,10 +160,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderWidth: 0,
     elevation: 1,
+    marginTop: WINDOW_HEIGHT/8,
     width: WINDOW_WIDTH-50,
   },
   top: {
     width: WINDOW_WIDTH-50,
+    height: WINDOW_HEIGHT/3.8,
+  },
+  dialogImg: {
+    width: WINDOW_WIDTH,
     height: WINDOW_HEIGHT/3.8,
   },
   bottom: {
