@@ -185,7 +185,7 @@ export default class HomeScreen extends React.Component {
         <View style={styles.logo}>
           <Image style={styles.image} source={Logo} />
         </View>
-        <View style={{flex: 1, paddingLeft: 20}}>
+        <View style={{flex: 1}}>
           <SwipeCards
             cards={this.state.cards}
             loop={true}
@@ -195,7 +195,7 @@ export default class HomeScreen extends React.Component {
 
             showYup={true}
             handleYup={this.handleYup}
-            yupText={'Interested'}
+            yupText={'Maybe'}
             yupStyle={styles.yupStyle}
             yupTextStyle={styles.yupTextStyle}
 
@@ -207,7 +207,7 @@ export default class HomeScreen extends React.Component {
 
             showMaybe={true}
             handleMaybe={this.handleMaybe}
-            maybeText={'Sign up!'}
+            maybeText={'Sign up'}
             hasMaybeAction={true}
             maybeStyle={styles.maybeStyle}
             maybeTextStyle={styles.maybeTextStyle}

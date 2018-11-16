@@ -107,7 +107,7 @@ export default class Card extends React.Component {
                   <Text style={styles.subheader}>{this.props.title}</Text>
                 </View>
                 <View>
-                  <Text style={styles.greysubtext}>by NUS Entrepreneur's Association</Text>
+                  <Text style={styles.greysubtext}>"by NUS Entrepreneur's Association"</Text>
                 </View>
 
                 //copied from above, should probably extract this out
@@ -212,6 +212,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderWidth: 0,
     width: WINDOW_WIDTH-50,
+    marginLeft: 15
   },
   shadow: {
     shadowColor: '#000',
