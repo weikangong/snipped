@@ -12,7 +12,7 @@ import {
 import SwipeCards from 'react-native-swipe-cards';
 import Card from '../components/Card';
 import NoMoreCards from '../components/NoMoreCards';
-import Logo from '../assets/images/logo.png';
+import Logo from '../assets/logo.png';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
