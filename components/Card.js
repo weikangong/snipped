@@ -78,16 +78,19 @@ export default class Card extends React.Component {
 
           <View style={styles.dialogContainer}>
             <Dialog
+              key = {Object.keys(this.props)}
               visible={this.state.toggleEventDetails}
               dialogAnimation={new SlideAnimation({
                 slideFrom: 'bottom',
               })}
               actions={[
                 <DialogButton
+                  key = {0}
                   text="Close"
                   onPress={this.toggleEventDetails}
                 />,
                 <DialogButton
+                  key = {1}
                   text="Sign up"
                   onPress={this.toggleEventDetails}
                 />
@@ -148,7 +151,7 @@ export default class Card extends React.Component {
 
 const styles = StyleSheet.create({
   dialogTitle: {
-    backgroundColor: 'rgba(255, 204, 204, 0.4)',
+    backgroundColor: 'rgba(255, 225, 136, 0.7)',
     paddingTop: 25,
   },
   dialogContainer: {
@@ -175,8 +178,9 @@ const styles = StyleSheet.create({
   },
   plaintext:{
     fontFamily: 'Avenir',
-    fontSize: 16,
+    fontSize: 18,
     lineHeight: 25,
+    fontWeight: '500'
   },
   subtext: {
     fontFamily: 'Avenir',
