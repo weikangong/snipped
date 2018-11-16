@@ -207,7 +207,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: 'white',
     borderWidth: 0,
-    marginTop: WINDOW_HEIGHT/8,
     width: WINDOW_WIDTH-50,
   },
   shadow: {
@@ -215,6 +214,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.5,
     elevation: 1, //for android
+    height: WINDOW_HEIGHT - 100
   },
   top: {
     width: WINDOW_WIDTH-50,
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     height: WINDOW_HEIGHT/2,
     width: '100%',
-    padding: 20,
+    padding: 20
   },
   container: {
     flex: 1,

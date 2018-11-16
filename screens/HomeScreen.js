@@ -12,6 +12,7 @@ import {
 import SwipeCards from 'react-native-swipe-cards';
 import Card from '../components/Card';
 import NoMoreCards from '../components/NoMoreCards';
+import Logo from '../assets/images/logo.png';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
@@ -180,45 +181,67 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1, backgroundColor: 'white', paddingLeft: 20 }}>
-        <SwipeCards
-          cards={this.state.cards}
-          loop={true}
-          stack={true}
-          renderCard={(cardData) => <Card {...cardData} />}
-          renderNoMoreCards={() => <NoMoreCards />}
-
-          showYup={true}
-          handleYup={this.handleYup}
-          yupText={'Interested'}
-          yupStyle={styles.yupStyle}
-          yupTextStyle={styles.yupTextStyle}
-
-          showNope={true}
-          handleNope={this.handleNope}
-          nopeText={'Nope'}
-          nopeStyle={styles.nopeStyle}
-          nopeTextStyle={styles.nopeTextStyle}
-
-          // showMaybe={true}
-          // handleMaybe={this.handleMaybe}
-          // maybeText={'Sign up!'}
-          // hasMaybeAction={true}
-          // maybeStyle={styles.maybeStyle}
-          // maybeTextStyle={styles.maybeTextStyle}
-
-          dragY={false}
-          cardRemoved={this.cardRemoved}
-
-          stackOffsetX={10}
-          onClickHandler={() => {return null}}
-        />
+      <View style={styles.cardContainer}>
+        <View style={styles.logo}>
+          <Image style={styles.image} source={Logo} />
         </View>
+        <View style={{flex: 1, paddingLeft: 20}}>
+          <SwipeCards
+            cards={this.state.cards}
+            loop={true}
+            stack={true}
+            renderCard={(cardData) => <Card {...cardData} />}
+            renderNoMoreCards={() => <NoMoreCards />}
+
+            showYup={true}
+            handleYup={this.handleYup}
+            yupText={'Interested'}
+            yupStyle={styles.yupStyle}
+            yupTextStyle={styles.yupTextStyle}
+
+            showNope={true}
+            handleNope={this.handleNope}
+            nopeText={'Nope'}
+            nopeStyle={styles.nopeStyle}
+            nopeTextStyle={styles.nopeTextStyle}
+
+            showMaybe={true}
+            handleMaybe={this.handleMaybe}
+            maybeText={'Sign up!'}
+            hasMaybeAction={true}
+            maybeStyle={styles.maybeStyle}
+            maybeTextStyle={styles.maybeTextStyle}
+
+            dragY={true}
+            cardRemoved={this.cardRemoved}
+
+            stackOffsetX={10}
+            onClickHandler={() => {return null}}
+          />
+        </View>
+      </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  cardContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(255, 225, 136, 0.7)'
+  },
+  image: {
+    flex: 1,
+    width: 200,
+    height: 200,
+    resizeMode: 'contain',
+    marginTop: 15
+  } ,
+  logo: {
+    alignItems: 'center',
+    width: WINDOW_WIDTH,
+    height: 80,
+    padding: 15
+  },
   nopeTextStyle:{
     fontFamily: 'Avenir',
     fontSize: 30,
@@ -231,51 +254,50 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     color: 'rgba(55, 188, 97, 1)',
   },
-  // maybeTextStyle:{
-  //   fontFamily: 'Avenir',
-  //   fontSize: 30,
-  //   fontWeight: "700",
-  //   color: 'rgba(0, 153, 255, 1)',
-  // },
+  maybeTextStyle:{
+    fontFamily: 'Avenir',
+    fontSize: 30,
+    fontWeight: "700",
+    color: 'rgba(0, 153, 255, 1)',
+  },
   nopeStyle: {
     borderColor: 'rgba(255, 0, 0, 0.7)',
     borderWidth: 5,
     position: 'absolute',
     left: 15,
-    bottom: WINDOW_HEIGHT/1.4,
+    bottom: WINDOW_HEIGHT/3,
     padding: 15,
-    borderRadius: 10,
+    borderRadius: 100,
     elevation: 99,
     width: 180,
     alignItems: 'center',
     backgroundColor: 'rgba(255, 0, 0, 0.2)',
   },
   yupStyle: {
-    fontFamily: 'Avenir',
     borderColor: 'rgba(55, 188, 97, 1)',
     borderWidth: 5,
+    borderRadius: 10,
     position: 'absolute',
     right: 15,
-    bottom: WINDOW_HEIGHT/1.4,
+    bottom: WINDOW_HEIGHT/3,
     padding: 15,
-    borderRadius: 10,
+    borderRadius: 100,
     elevation: 99,
     width: 180,
     alignItems: 'center',
     backgroundColor: 'rgba(55, 188, 97, 0.3)',
   },
-  // maybeStyle: {
-  //   fontFamily: 'Avenir',
-  //   borderColor: 'rgba(0, 153, 255, 1)',
-  //   borderWidth: 5,
-  //   position: 'absolute',
-  //   left: WINDOW_WIDTH/2,
-  //   bottom: WINDOW_HEIGHT/3,
-  //   padding: 15,
-  //   borderRadius: 10,
-  //   elevation: 99,
-  //   width: 180,
-  //   alignItems: 'center',
-  //   backgroundColor: 'rgba(0, 153, 255, 0.2)',
-  // }
+  maybeStyle: {
+    borderColor: 'rgba(0, 153, 255, 1)',
+    borderWidth: 5,
+    position: 'absolute',
+    left: WINDOW_WIDTH/5,
+    bottom: WINDOW_HEIGHT/1.3,
+    padding: 15,
+    borderRadius: 100,
+    elevation: 99,
+    width: 180,
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 153, 255, 0.2)',
+  }
 });
