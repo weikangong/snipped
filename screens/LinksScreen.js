@@ -6,7 +6,8 @@ import {
   View,
   StyleSheet,
   Dimensions,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  ActivityIndicator
 } from 'react-native';
 import Dialog, { SlideAnimation, DialogContent, DialogTitle, DialogButton } from 'react-native-popup-dialog';
 import Vishnu from '../assets/images/Vishnu.jpg';
@@ -22,6 +23,7 @@ const WINDOW_HEIGHT = Dimensions.get('window').height;
 export default class LinksScreen extends React.Component {
   static navigationOptions = {
     header: null,
+    isLoading: false
   };
 
   constructor(props) {
@@ -37,7 +39,9 @@ export default class LinksScreen extends React.Component {
   }
 
   onRematch = () => {
-    this.setState({ isRematch: !this.state.isRematch });
+    this.setState({ isRematch: !this.state.isRematch, isLoading: !this.state.isLoading });
+    if (this.loaderTimeout != undefined) clearTimeout(this.loaderTimeout);
+    this.loaderTimeout = setTimeout(() => { this.setState({ isLoading: !this.state.isLoading }) }, 2000);
   }
 
   render() {
@@ -51,8 +55,8 @@ export default class LinksScreen extends React.Component {
         </View>
         <TouchableWithoutFeedback onPress={this.toggleModal}>
           <View style={styles.card}>
-            <View>
-              <Image style={styles.img} source={{uri: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'}} />
+            <View style={styles.eventImageContainer}>
+              <Image style={styles.eventImage} source={{uri: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'}} />
             </View>
             <Text style={styles.subtext} numberOfLines={1}>Kent Ridge Hall Production</Text>
           </View>
@@ -60,7 +64,9 @@ export default class LinksScreen extends React.Component {
         <TouchableWithoutFeedback onPress={this.toggleModal}>
           <View style={styles.card}>
             <View>
-              <Image style={styles.img} source={{uri: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'}} />
+              <View style={styles.eventImageContainer}>
+                <Image style={styles.eventImage} source={{uri: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'}} />
+              </View>
             </View>
             <Text style={styles.subtext} numberOfLines={1}>Faculty of Engineering Orientation Week</Text>
           </View>
@@ -69,15 +75,17 @@ export default class LinksScreen extends React.Component {
         <TouchableWithoutFeedback onPress={this.toggleModal}>
           <View style={styles.card}>
             <View>
-              <Image style={styles.img} source={{uri: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'}} />
+              <View style={styles.eventImageContainer}>
+                <Image style={styles.eventImage} source={{uri: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'}} />
+              </View>
             </View>
             <Text style={styles.subtext} numberOfLines={1}>SoC Pizza Party</Text>
           </View>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={this.toggleModal}>
           <View style={styles.card}>
-            <View>
-              <Image style={styles.img} source={{uri: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'}} />
+            <View style={styles.eventImageContainer}>
+              <Image style={styles.eventImage} source={{uri: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'}} />
             </View>
             <Text style={styles.subtext} numberOfLines={1}>Residential College 4 Open Day</Text>
           </View>
@@ -106,10 +114,10 @@ export default class LinksScreen extends React.Component {
             onTouchOutside={this.toggleModal}
             containerStyle={{ flex: 1 }}
           >
-          <DialogTitle textStyle={styles.plaintext} style={styles.dialogTitle} title={'You got three matches!'} />
+          <DialogTitle textStyle={styles.plaintext} style={styles.dialogTitle} title={this.state.isLoading ? 'Finding your people' : 'You got three matches!'} />
           <View style={styles.dialogContentContainer}>
             {
-              !this.state.isRematch ?
+              !this.state.isRematch && !this.state.isLoading &&
               <View>
                 <View style={styles.leftImageContainer}>
                   <Image style={styles.image} source={Vishnu} />
@@ -127,7 +135,9 @@ export default class LinksScreen extends React.Component {
                   <Text style={styles.matchTitle}>We found these people that are just like you, now go on. Make that move.</Text>
                 </View>
               </View>
-              :
+            }
+            {
+              this.state.isRematch && !this.state.isLoading &&
               <View>
                 <View style={styles.leftImageContainer}>
                   <Image style={styles.image} source={Weikang} />
@@ -144,6 +154,12 @@ export default class LinksScreen extends React.Component {
                 <View style={styles.matchTitleContainer}>
                   <Text style={styles.matchTitle}>We found more people that are just like you. Time to socialize?</Text>
                 </View>
+              </View>
+            }
+            {
+              this.state.isLoading &&
+              <View style={styles.loaderContainer}>
+                <ActivityIndicator size="large" color='rgba(63, 63, 191, 1)' />
               </View>
             }
           </View>
@@ -187,13 +203,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Avenir',
     fontSize: 16,
     lineHeight: 25,
-  },
-  img: {
-    marginRight: 10,
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    overflow: 'hidden'
   },
   dialogContainer: {
     flex: 1,
@@ -243,4 +252,20 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 25,
   },
+  eventImageContainer: {
+    height: 50,
+    width: 50,
+    borderRadius: 100,
+    marginRight: 12
+  },
+  eventImage: {
+    height: 48,
+    width: 48,
+    borderRadius: 100
+  },
+  loaderContainer: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center'
+  }
 });
