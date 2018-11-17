@@ -3,9 +3,10 @@ import {
   Image,
   Text,
   View,
+  ScrollView,
   StyleSheet,
   Dimensions,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
 } from 'react-native';
 import Dialog, { SlideAnimation, DialogContent, DialogTitle, DialogButton } from 'react-native-popup-dialog';
 import { Ionicons } from '@expo/vector-icons';
@@ -21,12 +22,20 @@ export default class Card extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggleEventDetails: false
+      toggleEventDetails: false,
     }
   }
 
   toggleEventDetails = () => {
     this.setState({ toggleEventDetails: !this.state.toggleEventDetails });
+  }
+
+  onSignUp = (title) => {
+    this.toggleEventDetails();
+    if (this.signedUpBarTimeout !== undefined) clearTimeout(this.signedUpBarTimeout);
+    setTimeout(() => { this.props.swiper._forceUpSwipe() }, 300);
+    this.props.toggleSignedUpBarOn(title);
+    this.signedUpBarTimeout = setTimeout(() => { this.props.toggleSignedUpBarOff() }, 3000);
   }
 
   render() {
@@ -72,54 +81,35 @@ export default class Card extends React.Component {
                   <Text style={styles.greysubtext}>{this.props.address}</Text>
                 </View>
               </View>
-
             </View>
           </View>
 
           <View style={styles.dialogContainer}>
             <Dialog
-              key = {Object.keys(this.props)}
+              key={Object.keys(this.props)}
               visible={this.state.toggleEventDetails}
               dialogAnimation={new SlideAnimation({
                 slideFrom: 'bottom',
               })}
               actions={[
                 <DialogButton
-                  key = {0}
+                  key={0}
                   text="Close"
                   onPress={this.toggleEventDetails}
                 />,
                 <DialogButton
-                  key = {1}
+                  key={1}
                   text="Sign up"
-                  onPress={this.toggleEventDetails}
+                  onPress={() => { this.onSignUp(this.props.title) }}
                 />
               ]}
               width={WINDOW_WIDTH}
               height={WINDOW_HEIGHT}
               onTouchOutside={this.toggleEventDetails}
-              containerStyle={{ flex: 1 }}
             >
               <DialogTitle textStyle={styles.plaintext} style={styles.dialogTitle} title={this.props.title} />
               <Image style={styles.dialogImg} source={{uri: this.props.image}} />
-              <DialogContent>
-                <View style={{paddingTop: 20}}>
-                  <Text style={styles.subheader}>{this.props.title}</Text>
-                </View>
-                <View>
-                  <Text style={styles.greysubtext}>"by NUS Entrepreneur's Association"</Text>
-                </View>
-
-                //copied from above, should probably extract this out
-                <View style={styles.infoRow}>
-                  <View style={{width: 30, height: 30}}>
-                    <Ionicons name="md-person" size={24} color="grey" />
-                  </View>
-                  <View>
-                    <Text style={styles.subtext}>{this.props.going}</Text>
-                  </View>
-                </View>
-
+              <ScrollView style={styles.dialogContentContainer}>
                 <View style={styles.infoRow}>
                   <View style={{width: 30, height: 30}}>
                     <Ionicons name="md-calendar" size={24} color="grey" />
@@ -140,7 +130,16 @@ export default class Card extends React.Component {
                     <Text style={styles.greysubtext}>{this.props.address}</Text>
                   </View>
                 </View>
-              </DialogContent>
+
+                <View style={styles.infoRow}>
+                  <View style={{width: 30, height: 30}}>
+                    <Ionicons name="md-clipboard" size={24} color="grey" />
+                  </View>
+                  <View>
+                    <Text style={styles.subtext}>{this.props.description}</Text>
+                  </View>
+                </View>
+              </ScrollView>
             </Dialog>
           </View>
         </View>
@@ -151,7 +150,7 @@ export default class Card extends React.Component {
 
 const styles = StyleSheet.create({
   dialogTitle: {
-    backgroundColor: 'rgba(255, 225, 136, 0.7)',
+    // backgroundColor: 'rgba(255, 225, 136, 0.7)',
     paddingTop: 25,
   },
   dialogContainer: {
@@ -161,9 +160,7 @@ const styles = StyleSheet.create({
   },
   infoRow: {
     padding: 15,
-    flex: 1,
     flexDirection: 'row',
-    maxWidth: WINDOW_WIDTH - 140,
   },
   header: {
     fontFamily: 'Avenir',
@@ -239,5 +236,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+   },
+   dialogContentContainer: {
+     flex: 1,
+     padding: 20
    },
 });

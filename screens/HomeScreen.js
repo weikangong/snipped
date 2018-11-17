@@ -7,12 +7,15 @@ import {
   Dimensions,
   Text,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
+  Animated
 } from 'react-native';
-import SwipeCards from 'react-native-swipe-cards';
+import SwipeCards from '../components/SwipeCards';
 import Card from '../components/Card';
 import NoMoreCards from '../components/NoMoreCards';
 import Logo from '../assets/logo.png';
+import * as Animatable from 'react-native-animatable';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
@@ -28,7 +31,7 @@ const cards = [
     time: '10:00 AM - 5:00 AM GMT+8',
     location: 'Engineering Auditorium 6',
     address: '2706 Martin Luther King Jr. Way, Berkeley CA 94703',
-    description: ''
+    description: '2706 Martin Luther2706 Martin Luther2706 Martin Luther2706 Martin Luther2706 Martin Luther King Jr. Way, Berkeley CA 947032706 Martin Luther King Jr. Way, Berkeley CA 947032706 Martin Luther King Jr. Way, Berkeley CA 947032706 Martin Luther King Jr. Way, Berkeley CA 947032706 Martin Luther King Jr. Way, Berkeley CA 947032706 Martin Luther King Jr. Way, Berkeley CA 947032706 Martin Luther King Jr. Way, Berkeley CA 947032706 Martin Luther King Jr. Way, Berkeley CA 947032706 Martin Luther King Jr. Way, Berkeley CA 94703'
   },
   {
     key: 1,
@@ -144,7 +147,9 @@ export default class HomeScreen extends React.Component {
     super(props);
     this.state = {
       cards: cards,
-      outOfCards: false
+      outOfCards: false,
+      showSignedUpBar: false,
+      signedUpBarText: ''
     }
   }
 
@@ -179,19 +184,58 @@ export default class HomeScreen extends React.Component {
     }
   }
 
+  renderSignedUpBar = () => {
+    console.log('renderSignedUpBar', this.state.signedUpBarText)
+    return (
+      <View>
+      {
+        this.state.signedUpBarText !== '' &&
+        <Animatable.View
+          style={styles.signedUp}
+          ref={ref => (this.SignedUpBar = ref)}
+          animation="slideInUp"
+          duration={100}
+        >
+          <Text style={styles.signedUpText} numberOfLines={1}>{`You signed up for ${this.state.signedUpBarText}`}</Text>
+          <TouchableWithoutFeedback onPress={this.onUndo}>
+            <View>
+              <Text style={styles.signedUpButton}>{'UNDO'}</Text>
+            </View>
+          </TouchableWithoutFeedback>
+        </Animatable.View>
+      }
+      </View>
+    );
+  }
+
+  toggleSignedUpBarOn = (title = '') => {
+    this.setState({ showSignedUpBar: true, signedUpBarText: title });
+  }
+
+  toggleSignedUpBarOff = () => {
+    this.setState({ showSignedUpBar: false, signedUpBarText: '' });
+  }
+
+  onUndo = () => {
+    this.swiper._goToPrevCard();
+    this.toggleSignedUpBarOff();
+  }
+  
   render() {
     return (
       <View style={styles.cardContainer}>
-        <View style={styles.logo}>
-          <Image style={styles.image} source={Logo} />
-        </View>
         <View style={{flex: 1}}>
+          <View style={styles.logo}>
+            <Image style={styles.image} source={Logo} />
+          </View>
           <SwipeCards
+            ref={(swiper) => this.swiper = swiper}
             cards={this.state.cards}
             loop={true}
             stack={true}
-            renderCard={(cardData) => <Card {...cardData} />}
+            renderCard={(cardData) => <Card toggleSignedUpBarOn={this.toggleSignedUpBarOn} toggleSignedUpBarOff={this.toggleSignedUpBarOff} swiper={this.swiper} {...cardData} />}
             renderNoMoreCards={() => <NoMoreCards />}
+            smoothTransition={true}
 
             showYup={true}
             handleYup={this.handleYup}
@@ -218,6 +262,7 @@ export default class HomeScreen extends React.Component {
             stackOffsetX={10}
             onClickHandler={() => {return null}}
           />
+          {this.state.showSignedUpBar && this.renderSignedUpBar()}
         </View>
       </View>
     )
@@ -227,20 +272,18 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   cardContainer: {
     flex: 1,
-    backgroundColor: 'rgba(255, 225, 136, 0.7)'
+    // backgroundColor: 'rgba(255, 225, 136, 0.7)',
+    backgroundColor: 'white'
   },
   image: {
-    flex: 1,
-    width: 200,
-    height: 200,
+    height: WINDOW_HEIGHT/10,
+    width: WINDOW_WIDTH/2,
     resizeMode: 'contain',
-    marginTop: 15
-  } ,
+  },
   logo: {
     alignItems: 'center',
-    width: WINDOW_WIDTH,
-    height: 80,
-    padding: 15
+    alignSelf: 'center',
+    marginTop: 30,
   },
   nopeTextStyle:{
     fontFamily: 'Avenir',
@@ -271,7 +314,7 @@ const styles = StyleSheet.create({
     elevation: 99,
     width: 180,
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 0, 0, 0.2)',
+    backgroundColor: 'rgba(255, 0, 0, 0.4)',
   },
   yupStyle: {
     borderColor: 'rgba(55, 188, 97, 1)',
@@ -285,19 +328,43 @@ const styles = StyleSheet.create({
     elevation: 99,
     width: 180,
     alignItems: 'center',
-    backgroundColor: 'rgba(55, 188, 97, 0.3)',
+    backgroundColor: 'rgba(55, 188, 97, 0.4)',
   },
   maybeStyle: {
     borderColor: 'rgba(0, 153, 255, 1)',
     borderWidth: 5,
     position: 'absolute',
-    left: WINDOW_WIDTH/5,
-    bottom: WINDOW_HEIGHT/1.3,
+    left: WINDOW_WIDTH/4,
+    bottom: WINDOW_HEIGHT/2,
     padding: 15,
     borderRadius: 100,
     elevation: 99,
     width: 180,
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 153, 255, 0.2)',
-  }
+    backgroundColor: 'rgba(0, 153, 255, 0.4)',
+  },
+  signedUp: {
+    backgroundColor: "#292929",
+    height: 50,
+    flex: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  signedUpText: {
+    flex: 1,
+    padding: 16,
+    fontSize: 14,
+    height: 50,
+    color: 'white',
+  },
+  signedUpButton: {
+    paddingTop: 16,
+    paddingRight: 16,
+    color: 'rgba(255, 225, 136, 1)',
+    height: 50,
+    fontWeight: '700',
+    fontSize: 14,
+    width: 60
+  },
 });
