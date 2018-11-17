@@ -17,6 +17,17 @@ import NoMoreCards from '../components/NoMoreCards';
 import Logo from '../assets/logo.png';
 import * as Animatable from 'react-native-animatable';
 
+import WomenInTech from '../assets/images/womenintech.jpeg';
+import KentRidgeHall from '../assets/images/kentridgehall.jpeg';
+import Oweek from '../assets/images/oweek.jpeg';
+import SocPizza from '../assets/images/socpizza.jpeg';
+import ArtsWeek from '../assets/images/artsweek.jpeg';
+import Cactus from '../assets/images/cactus.jpeg';
+import RagFlag from '../assets/images/ragflag.jpeg';
+import RC4 from '../assets/images/rc4openday.jpeg';
+import OpenDay from '../assets/images/openday.jpeg';
+
+
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
@@ -24,118 +35,150 @@ const cards = [
   {
     key: 0,
     title: 'Women in Tech Asia',
-    image: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif',
+    image: WomenInTech,
     subtitle: 'Meet other women just like you!',
     going: 'Janet Wong, Christina Choo and 98 others are also going',
-    date: 'Sat, 19 Sep 2018',
-    time: '10:00 AM - 5:00 AM GMT+8',
-    location: 'Engineering Auditorium 6',
-    address: '2706 Martin Luther King Jr. Way, Berkeley CA 94703',
-    description: '2706 Martin Luther2706 Martin Luther2706 Martin Luther2706 Martin Luther2706 Martin Luther King Jr. Way, Berkeley CA 947032706 Martin Luther King Jr. Way, Berkeley CA 947032706 Martin Luther King Jr. Way, Berkeley CA 947032706 Martin Luther King Jr. Way, Berkeley CA 947032706 Martin Luther King Jr. Way, Berkeley CA 947032706 Martin Luther King Jr. Way, Berkeley CA 947032706 Martin Luther King Jr. Way, Berkeley CA 947032706 Martin Luther King Jr. Way, Berkeley CA 947032706 Martin Luther King Jr. Way, Berkeley CA 94703'
+    date: 'Sat, 19 Jan 2019',
+    time: '10:00 AM - 2:00 PM GMT+8',
+    location: 'BLK71',
+    address: '71 Ayer Rajah Crescent, #02-01, Singapore 139951',
+    description: 'Connect and network with women who thrived in Singapores Tech scene. Meet influential speakers from companies such as Grab, 99.co and Lazada',
   },
   {
     key: 1,
     title: 'Kent Ridge Hall Production',
-    image: 'https://media.giphy.com/media/irTuv1L1T34TC/giphy.gif',
-    subtitle: '',
-    going: 'Janet Wong, Christina Choo and 98 others are also going',
-    date: 'Sat, 19 Sep 2018',
-    time: '10:00 AM - 5:00 AM GMT+8',
-    location: 'Engineering Auditorium 6',
-    address: '2706 Martin Luther King Jr. Way, Berkeley CA 94703',
-    description: ''
+    image: KentRidgeHall,
+    subtitle: 'Watch amazing performances set up by your hall mates!',
+    going: 'Yu Xuan, Kai Sing and 47 others are also going',
+    date: 'Sat, 6 Feb 2018',
+    time: '7:00 PM - 10:00 PM GMT+8',
+    location: 'Kent Ridge Hall',
+    address: '10 Heng Mui Keng Terrace, Singapore 119617',
+    description: 'Dance, sing and party! Come watch your fellow hall mates perform and showcase their talents '
   },
   {
     key: 2,
     title: 'Faculty of Engineering Orientation Week',
-    image: 'https://media.giphy.com/media/LkLL0HJerdXMI/giphy.gif',
-    subtitle: '',
-    going: 'Janet Wong, Christina Choo and 98 others are also going',
-    date: 'Sat, 19 Sep 2018',
-    time: '10:00 AM - 5:00 AM GMT+8',
+    image: Oweek,
+    subtitle: 'Ease the transition, get to know your peers!',
+    going: 'Jerron Lim, Chang Jie and 48 others are also going',
+    date: 'Sat, 29 Jan 2018',
+    time: '10:00 AM - 9:00 PM GMT+8',
     location: 'Engineering Auditorium 6',
-    address: '2706 Martin Luther King Jr. Way, Berkeley CA 94703',
-    description: ''
+    address: 'Blk EA, 9 Engineering Drive 1, 06-10, Singapore 117575',
+    description: 'Get to know your batchmates and seniors through fun activites and games! '
   },
   {
     key: 3,
     title: 'SoC Pizza Party',
-    image: 'https://media.giphy.com/media/fFBmUMzFL5zRS/giphy.gif',
-    subtitle: '',
-    going: 'Janet Wong, Christina Choo and 98 others are also going',
-    date: 'Sat, 19 Sep 2018',
-    time: '10:00 AM - 5:00 AM GMT+8',
-    location: 'Engineering Auditorium 6',
-    address: '2706 Martin Luther King Jr. Way, Berkeley CA 94703',
-    description: ''
+    image: SocPizza,
+    subtitle: 'Cause who doesnt love pizza',
+    going: 'Dhruv, Wei Kang and 8 others are also going',
+    date: 'Tue, 4 Jan 2018',
+    time: '5:00 PM - 7:00 PM GMT+8',
+    location: 'NUS School of Computing',
+    address: 'NUS School of Computing, COM1, 13 Computing Drive, Singapore 117417',
+    description: 'Connect over some good-ol pizza and drinks'
   },
   {
     key: 4,
     title: 'Art and Design Week',
-    image: 'https://media.giphy.com/media/oDLDbBgf0dkis/giphy.gif',
-    subtitle: '',
-    going: 'Janet Wong, Christina Choo and 98 others are also going',
-    date: 'Sat, 19 Sep 2018',
-    time: '10:00 AM - 5:00 AM GMT+8',
-    location: 'Engineering Auditorium 6',
-    address: '2706 Martin Luther King Jr. Way, Berkeley CA 94703',
-    description: ''
+    image: ArtsWeek,
+    subtitle: 'Showcase of Singapores talented artists',
+    going: 'Kaci Lee, Laurie Khoo and 54 others are also going',
+    date: 'Sat, 17 Jan 2018',
+    time: '10:00 AM - 5:00 PM GMT+8',
+    location: 'LASALLE College of the Arts',
+    address: '1 McNally St, Singapore 187940',
+    description: 'The Art and Design Week honors our cityís rich design culture and celebrates our status as a global design capital.'
   },
   {
     key: 5,
     title: 'CAC+US!',
-    image: 'https://media.giphy.com/media/7r4g8V2UkBUcw/giphy.gif',
-    subtitle: '',
-    going: 'Janet Wong, Christina Choo and 98 others are also going',
-    date: 'Sat, 19 Sep 2018',
-    time: '10:00 AM - 5:00 AM GMT+8',
-    location: 'Engineering Auditorium 6',
-    address: '2706 Martin Luther King Jr. Way, Berkeley CA 94703',
-    description: ''
+    image: Cactus,
+    subtitle: 'Music and Dance concert proudly presented by NUS students',
+    going: 'Jason Lee, Christian and 132 others are also going',
+    date: 'Sat, 2 Feb 2018',
+    time: '6:00 PM - 9:00 PM GMT+8',
+    location: 'Lee Kong Chian Natural History Museum',
+    address: '2 Conservatory Dr, Singapore 117377',
+    description: 'Cultural Activties Club plus US (CAC+US) is NUS CACís largest annual Music and Dance concert featuring all 11 of its subsidary clubs, ranging from the traditional to modern cultural performing arts.'
   },
   {
     key: 6,
     title: 'Rag & Flag 2019',
-    image: 'https://media.giphy.com/media/K6Q7ZCdLy8pCE/giphy.gif',
-    subtitle: '',
-    going: 'Janet Wong, Christina Choo and 98 others are also going',
-    date: 'Sat, 19 Sep 2018',
-    time: '10:00 AM - 5:00 AM GMT+8',
-    location: 'Engineering Auditorium 6',
-    address: '2706 Martin Luther King Jr. Way, Berkeley CA 94703',
-    description: ''
+    image: RagFlag,
+    subtitle: 'Charity project, donation drives, its time to give back to the community!',
+    going: 'Jane Jackson, Nicholas Lam and 102 others are also going',
+    date: 'Sat, 23 Feb 2018',
+    time: '10:00 AM - 5:00 PM GMT+8',
+    location: 'University Town',
+    address: '2 College Ave West',
+    description: 'NUSSU Rag and Flag is an annual charity project featured prominently in the National University of Singapore Students Union Freshmen Orientation Programme.'
   },
   {
     key: 7,
     title: 'Residential College 4 Open Day',
-    image: 'https://media.giphy.com/media/hEwST9KM0UGti/giphy.gif',
-    subtitle: 'Janet Wong, Christina Choo and 98 others are also going',
-    going: 'Janet Wong, Christina Choo and 98 others are also going',
+    image: RC4,
+    subtitle: 'Take a look at what RC4 has to offer!',
+    going: 'Tom, Laura Lee and 48 others are also going',
     date: 'Sat, 19 Sep 2018',
-    time: '10:00 AM - 5:00 AM GMT+8',
-    location: 'Engineering Auditorium 6',
-    address: '2706 Martin Luther King Jr. Way, Berkeley CA 94703',
-    description: ''
+    time: '10:00 AM - 5:00 PM GMT+8',
+    location: 'Residential College 4',
+    address: '6 College Avenue East, #01-01, University Town, National University of Singapore, Singapore 138614',
+    description: 'This Open Day, the highlight of your visit to our college will be a personalized and interactive tour of our college and its facilities'
   },
   {
     key: 8,
     title: 'NUS Open Day',
-    image: 'https://media.giphy.com/media/3oEduJbDtIuA2VrtS0/giphy.gif',
-    subtitle: '',
-    going: 'Janet Wong, Christina Choo and 98 others are also going',
+    image: OpenDay,
+    subtitle: 'Learn more about NUS and find the right course for you',
+    going: 'Jonathan Tan, Clara and 158 others are also going',
     date: 'Sat, 19 Sep 2018',
-    time: '10:00 AM - 5:00 AM GMT+8',
-    location: 'Engineering Auditorium 6',
-    address: '2706 Martin Luther King Jr. Way, Berkeley CA 94703',
-    description: ''
+    time: '10:00 AM - 5:00 PM GMT+8',
+    location: 'University Town',
+    address: '2 College Ave West',
+    description: 'Come down to find out more about NUS! There will be booths to learn about your intended major. Professors, lecturers, staff, and students will all be around to answer all of your burning questions and share about their respective fields'
   },
 ]
 
 const cards2 = [
-  {title: '10', image: 'https://media.giphy.com/media/12b3E4U9aSndxC/giphy.gif'},
-  {title: '11', image: 'https://media4.giphy.com/media/6csVEPEmHWhWg/200.gif'},
-  {title: '12', image: 'https://media4.giphy.com/media/AA69fOAMCPa4o/200.gif'},
-  {title: '13', image: 'https://media.giphy.com/media/OVHFny0I7njuU/giphy.gif'},
+  {
+    key: 10,
+    title: 'Rag & Flag 2019',
+    image: RagFlag,
+    subtitle: 'Charity project, donation drives, its time to give back to the community!',
+    going: 'Jane Jackson, Nicholas Lam and 102 others are also going',
+    date: 'Sat, 23 Feb 2018',
+    time: '10:00 AM - 5:00 PM GMT+8',
+    location: 'University Town',
+    address: '2 College Ave West',
+    description: 'NUSSU Rag and Flag is an annual charity project featured prominently in the National University of Singapore Students Union Freshmen Orientation Programme.'
+  },
+  {
+    key: 11,
+    title: 'Residential College 4 Open Day',
+    image: RC4,
+    subtitle: 'Take a look at what RC4 has to offer!',
+    going: 'Tom, Laura Lee and 48 others are also going',
+    date: 'Sat, 19 Sep 2018',
+    time: '10:00 AM - 5:00 PM GMT+8',
+    location: 'Residential College 4',
+    address: '6 College Avenue East, #01-01, University Town, National University of Singapore, Singapore 138614',
+    description: 'This Open Day, the highlight of your visit to our college will be a personalized and interactive tour of our college and its facilities'
+  },
+  {
+    key: 12,
+    title: 'NUS Open Day',
+    image: OpenDay,
+    subtitle: 'Learn more about NUS and find the right course for you',
+    going: 'Jonathan Tan, Clara and 158 others are also going',
+    date: 'Sat, 19 Sep 2018',
+    time: '10:00 AM - 5:00 PM GMT+8',
+    location: 'University Town',
+    address: '2 College Ave West',
+    description: 'Come down to find out more about NUS! There will be booths to learn about your intended major. Professors, lecturers, staff, and students will all be around to answer all of your burning questions and share about their respective fields'
+  },
 ]
 
 export default class HomeScreen extends React.Component {
@@ -220,7 +263,7 @@ export default class HomeScreen extends React.Component {
     this.swiper._goToPrevCard();
     this.toggleSignedUpBarOff();
   }
-  
+
   render() {
     return (
       <View style={styles.cardContainer}>
@@ -272,11 +315,10 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   cardContainer: {
     flex: 1,
-    // backgroundColor: 'rgba(255, 225, 136, 0.7)',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   image: {
-    height: WINDOW_HEIGHT/10,
+    height: WINDOW_HEIGHT/18,
     width: WINDOW_WIDTH/2,
     resizeMode: 'contain',
   },
@@ -284,6 +326,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     marginTop: 30,
+    marginBottom: 10
   },
   nopeTextStyle:{
     fontFamily: 'Avenir',

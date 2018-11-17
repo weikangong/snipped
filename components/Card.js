@@ -43,7 +43,7 @@ export default class Card extends React.Component {
       <TouchableWithoutFeedback onPress={this.toggleEventDetails}>
         <View style={styles.shadow}>
           <View style={styles.card}>
-            <Image style={styles.top} source={{uri: this.props.image}} />
+            <Image style={styles.top} source={this.props.image} />
             <View style={styles.bottom}>
               <View>
                 <Text style={styles.header}>{this.props.title}</Text>
@@ -108,7 +108,7 @@ export default class Card extends React.Component {
               onTouchOutside={this.toggleEventDetails}
             >
               <DialogTitle textStyle={styles.plaintext} style={styles.dialogTitle} title={this.props.title} />
-              <Image style={styles.dialogImg} source={{uri: this.props.image}} />
+              <Image style={styles.dialogImg} source={this.props.image} />
               <ScrollView style={styles.dialogContentContainer}>
                 <View style={styles.infoRow}>
                   <View style={{width: 30, height: 30}}>
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
   },
   bottom: {
     alignItems: 'flex-start',
-    height: WINDOW_HEIGHT/2,
+    height: WINDOW_HEIGHT/1.9,
     width: '100%',
     padding: 20
   },

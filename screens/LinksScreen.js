@@ -17,6 +17,15 @@ import Weikang from '../assets/images/Weikang.jpg';
 import Himawan from '../assets/images/Himawan.jpg';
 import Mitchell from '../assets/images/Mitchell.jpg';
 
+import KentRidgeHall from '../assets/images/kentridgehall.jpeg';
+import Oweek from '../assets/images/oweek.jpeg';
+import SocPizza from '../assets/images/socpizza.jpeg';
+import RC4 from '../assets/images/rc4openday.jpeg';
+
+import { Ionicons } from '@expo/vector-icons';
+
+import { Cards } from '../components/Card.js'
+
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
@@ -48,7 +57,7 @@ export default class LinksScreen extends React.Component {
     return (
       <ScrollView style={styles.container}>
         <View>
-         <Text style={styles.header}>Your events</Text>
+         <Text style={styles.bigHeader}>Your events</Text>
         </View>
         <View>
           <Text style={styles.header}>Match now!</Text>
@@ -56,19 +65,43 @@ export default class LinksScreen extends React.Component {
         <TouchableWithoutFeedback onPress={this.toggleModal}>
           <View style={styles.card}>
             <View style={styles.eventImageContainer}>
-              <Image style={styles.eventImage} source={{uri: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'}} />
+              <Image style={styles.eventImage} source={KentRidgeHall} />
             </View>
-            <Text style={styles.subtext} numberOfLines={1}>Kent Ridge Hall Production</Text>
+            <View>
+              <View>
+                <Text style={styles.subtext}>Kent Ridge Hall Production</Text>
+              </View>
+              <View style={{flexDirection: 'row'}}>
+                <View style={{width: 30, height: 30}}>
+                  <Ionicons name="md-person" size={24} color="grey" />
+                </View>
+                <View>
+                  <Text style={styles.subtext1}>Bruce Lee is also going</Text>
+                </View>
+              </View>
+            </View>
           </View>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={this.toggleModal}>
           <View style={styles.card}>
             <View>
               <View style={styles.eventImageContainer}>
-                <Image style={styles.eventImage} source={{uri: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'}} />
+                <Image style={styles.eventImage} source={Oweek} />
               </View>
             </View>
-            <Text style={styles.subtext} numberOfLines={1}>Faculty of Engineering Orientation Week</Text>
+            <View>
+              <View>
+                <Text style={styles.subtext}>Faculty of Engineering Orientation Week</Text>
+              </View>
+              <View style={{flexDirection: 'row'}}>
+                <View style={{width: 30, height: 30}}>
+                  <Ionicons name="md-person" size={24} color="grey" />
+                </View>
+                <View>
+                  <Text style={styles.subtext1}>Jonathan Tan is also going</Text>
+                </View>
+              </View>
+            </View>
           </View>
         </TouchableWithoutFeedback>
          <Text style={styles.header}>Matched</Text>
@@ -76,18 +109,42 @@ export default class LinksScreen extends React.Component {
           <View style={styles.card}>
             <View>
               <View style={styles.eventImageContainer}>
-                <Image style={styles.eventImage} source={{uri: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'}} />
+                <Image style={styles.eventImage} source={SocPizza} />
               </View>
             </View>
-            <Text style={styles.subtext} numberOfLines={1}>SoC Pizza Party</Text>
+            <View>
+              <View>
+                <Text style={styles.subtext}>SoC Pizza Party</Text>
+              </View>
+              <View style={{flexDirection: 'row'}}>
+                <View style={{width: 30, height: 30}}>
+                  <Ionicons name="md-people" size={24} color="grey" />
+                </View>
+                <View>
+                  <Text style={styles.subtext1}>Matched: Sheryl Lim and Clara Tan</Text>
+                </View>
+              </View>
+            </View>
           </View>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={this.toggleModal}>
           <View style={styles.card}>
             <View style={styles.eventImageContainer}>
-              <Image style={styles.eventImage} source={{uri: 'https://media.giphy.com/media/GfXFVHUzjlbOg/giphy.gif'}} />
+              <Image style={styles.eventImage} source={RC4} />
             </View>
-            <Text style={styles.subtext} numberOfLines={1}>Residential College 4 Open Day</Text>
+            <View>
+              <View>
+                <Text style={styles.subtext}>Residential College 4 Open Day</Text>
+              </View>
+              <View style={{flexDirection: 'row'}}>
+                <View style={{width: 30, height: 30}}>
+                  <Ionicons name="md-people" size={24} color="grey" />
+                </View>
+                <View>
+                  <Text style={styles.subtext1}>Matched: Jerron Lim and Cherry Wee</Text>
+                </View>
+              </View>
+            </View>
           </View>
         </TouchableWithoutFeedback>
         <View style={styles.dialogContainer}>
@@ -128,7 +185,7 @@ export default class LinksScreen extends React.Component {
                 </View>
 
                 <View style={styles.middleImageContainer}>
-                  <Image style={styles.image} source={Yushi} />
+                  <Image style={styles.image} source={Weikang} />
                 </View>
 
                 <View style={styles.matchTitleContainer}>
@@ -140,7 +197,7 @@ export default class LinksScreen extends React.Component {
               this.state.isRematch && !this.state.isLoading &&
               <View>
                 <View style={styles.leftImageContainer}>
-                  <Image style={styles.image} source={Weikang} />
+                  <Image style={styles.image} source={Yushi} />
                 </View>
 
                 <View style={styles.rightImageContainer}>
@@ -148,7 +205,7 @@ export default class LinksScreen extends React.Component {
                 </View>
 
                 <View style={styles.middleImageContainer}>
-                  <Image style={styles.image} source={Mitchell} />
+                  <Image style={styles.image} source={Weikang} />
                 </View>
 
                 <View style={styles.matchTitleContainer}>
@@ -177,11 +234,19 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     backgroundColor: 'white'
   },
+  bigHeader:{
+    fontFamily: 'Avenir',
+    fontSize: 40,
+    lineHeight: 50,
+    paddingBottom: 20,
+    fontWeight: '700'
+  },
   header: {
     fontFamily: 'Avenir',
-    fontSize: 30,
-    lineHeight: 40,
-    paddingBottom: 20
+    fontSize: 20,
+    lineHeight: 25,
+    paddingBottom: 20,
+    paddingTop: 30
   },
   card: {
     backgroundColor: '#fff',
@@ -203,6 +268,16 @@ const styles = StyleSheet.create({
     fontFamily: 'Avenir',
     fontSize: 16,
     lineHeight: 25,
+    fontWeight: '700'
+  },
+  subtext1: {
+    alignItems: 'flex-start',
+    flex: 1,
+    fontFamily: 'Avenir',
+    fontSize: 16,
+    lineHeight: 25,
+    fontWeight: '500',
+    width: '100%',
   },
   dialogContainer: {
     flex: 1,
@@ -237,9 +312,9 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   image: {
-    height: 130,
-    width: 130,
-    borderRadius: 100
+    height: 120,
+    width: 120,
+    borderRadius: 60
   },
   matchTitleContainer: {
     position: 'absolute',
@@ -259,9 +334,9 @@ const styles = StyleSheet.create({
     marginRight: 12
   },
   eventImage: {
-    height: 48,
-    width: 48,
-    borderRadius: 100
+    height: 50,
+    width: 50,
+    borderRadius: 25
   },
   loaderContainer: {
       flex: 1,
